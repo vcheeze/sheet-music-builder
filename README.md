@@ -18,6 +18,7 @@ The [Dropbox HTTP documentation](https://www.dropbox.com/developers/documentatio
 
 ## Libraries Used
 
+- [pdf2json](https://www.npmjs.com/package/pdf2json) for reading PDF content
 - [PDF-LIB](https://pdf-lib.js.org/) for [merging PDFs](https://github.com/Hopding/pdf-lib/issues/252)
 - [chalk](https://www.npmjs.com/package/chalk) and [boxen](https://www.npmjs.com/package/boxen) for pretty terminal messages
 - [Fuse.js](https://fusejs.io/) for fuzzy search
