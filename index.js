@@ -13,6 +13,7 @@ import { filterUnselected } from './lib/filterUnselected.js';
 import { getSongFolders } from './lib/getSongFolders.js';
 import { getRemainingSelection } from './lib/getRemainingSelection.js';
 import { createAndSaveFinalPdf } from './lib/createAndSaveFinalPdf.js';
+import { boxenOptions, filterObjectKey } from './utils.js';
 
 config();
 
@@ -25,7 +26,7 @@ async function main() {
       type: 'input',
       name: 'filePath',
       message:
-        'Please enter the Order of Service PDF (exported from Notion) file path: ',
+        'Drag and drop the Order of Service PDF (exported from Notion) here: ',
     },
     {
       type: 'checkbox',
@@ -53,22 +54,17 @@ async function main() {
       dbx
     );
     const initialSelection = await inquirer.prompt(selected);
-    const boxenOptions = {
-      padding: 1,
-      margin: 1,
-      borderStyle: 'single',
-      borderColor: '#cfa966',
-      backgroundColor: '#99b5bf',
-    };
     const initialSelectionMessage = boxen(
-      chalk
-        .hex('#333333')
-        .bold(
-          [
-            '----- Initial Selection -----',
-            ...Object.keys(initialSelection),
-          ].join('\n')
-        ),
+      chalk.hex('#333333').bold(
+        [
+          '----- Initial Selection -----',
+          ...filterObjectKey(
+            initialSelection,
+            ([key, value]) => value.length > 0
+          ),
+          // ...Object.keys(initialSelection),
+        ].join('\n')
+      ),
       boxenOptions
     );
     console.log(initialSelectionMessage);
