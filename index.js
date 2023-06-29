@@ -43,7 +43,6 @@ async function main() {
   );
   pdfParser.on('pdfParser_dataReady', async (pdfData) => {
     const songTitles = await getSongTitles(pdfParser);
-    console.log('songTitles :>> ', songTitles);
 
     const dbx = new Dropbox({
       accessToken: process.env.DROPBOX_API_TOKEN,
